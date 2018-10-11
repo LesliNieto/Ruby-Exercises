@@ -18,5 +18,38 @@ class Fibonacci
   
 end
 
-fibo = Fibonacci.new(10)
-puts fibo.even_numbers_fibonacci
+#--------------TEST-------------------
+
+require 'minitest/autorun'
+
+class FibonacciTest < Minitest::Test
+
+  def setup
+    @number = Fibonacci.new(10)
+  end
+
+  def test_instance_of_fibonacci
+    assert_instance_of(Fibonacci, @number)
+  end
+
+  def test_even_numbers_fibonacci
+    assert_equal(44, @number.even_numbers_fibonacci)
+  end
+
+end
+
+#-----------------TESTSPEC--------------
+
+describe Fibonacci do
+
+  before do
+    @number_1 = Fibonacci.new(10)
+  end
+
+  describe "when Insert a number" do
+    it "must gets the even numbers sum of the fibonacci sequence" do
+      @number_1.even_numbers_fibonacci.must_equal(44)
+    end
+  end
+
+end
