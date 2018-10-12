@@ -12,8 +12,41 @@ class PrimeFactor
   def prime_factor
     Prime.prime_division(@num).flatten.max
   end
-  
+
 end
 
-number = PrimeFactor.new(600851475143)
-puts number.prime_factor
+#--------------TEST-------------------
+
+require 'minitest/autorun'
+
+class PrimeFactorTest < Minitest::Test
+
+  def setup
+    @number = PrimeFactor.new(600851475143)
+  end
+
+  def test_instance_of_prime_factor
+    assert_instance_of(PrimeFactor, @number)
+  end
+
+  def test_prime_factor
+    assert_equal(6857, @number.prime_factor)
+  end
+
+end
+
+#-----------------TESTSPEC--------------
+
+describe PrimeFactor do
+
+  before do
+    @number_1 = PrimeFactor.new(600851475143)
+  end
+
+  describe "when Insert a number " do
+    it "must gets the largest prime factor of the number inserted" do
+      @number_1.prime_factor.must_equal(6857)
+    end
+  end
+
+end

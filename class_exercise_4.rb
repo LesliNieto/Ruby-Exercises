@@ -14,9 +14,9 @@ class PalindromicNumber
 
   def numbers
     biggest = 0
-    (100...@max).each do |num1|
-      (100...@max).each do |num2|
-        product = num1 * num2
+    (100..@max).each do |num_1|
+      (100..@max).each do |num_2|
+        product = num_1 * num_2
         biggest = product if product > biggest && palindrome(product)
       end
     end
@@ -24,5 +24,40 @@ class PalindromicNumber
   end 
 end
 
-number1 = PalindromicNumber.new(1000)
-puts number1.numbers
+
+
+#--------------TEST-------------------
+
+require 'minitest/autorun'
+
+class PalindromicNumberTest < Minitest::Test
+
+  def setup
+    @number = PalindromicNumber.new(999)
+  end
+
+  def test_instance_of_palindromic_number
+    assert_instance_of(PalindromicNumber, @number)
+  end
+
+  def test_numbers
+    assert_equal(906609, @number.numbers)
+  end
+
+end
+
+#-----------------TESTSPEC---------------
+
+describe PalindromicNumber do
+
+  before do
+   @number_1 = PalindromicNumber.new(1000)
+  end
+
+  describe "when insert a 3-digit number" do
+    it "Must gets the largest palindrome made from the product of two 3-digit numbers" do
+      @number_1.numbers.must_equal(906609)
+    end
+  end
+
+end
